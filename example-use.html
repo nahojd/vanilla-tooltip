@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Vanilla Tooltip</title>
+		<style>
+			*, *:before, *:after, body {
+				box-sizing: border-box;
+			}
+
+			.popover {
+				position: absolute;
+				display: none;
+				max-width: 300px;
+				background-color: #ffe;
+				border: 1px solid #666;
+				border-radius: 3px;
+				box-shadow: 0 5px 10px rgba(0,0,0,.2);
+				-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+			}
+
+			.popover .popover-content {
+				padding: 10px;
+			}
+
+			.popover .arrow {
+				border-style: solid;
+				border-color: transparent;
+				border-top-color: #666;
+				border-width: 11px;
+				border-bottom-width: 0;
+				bottom: -11px;
+				color: #333;
+				height: 0;
+				margin-left: -11px;
+				position: absolute;
+				width: 0;
+			}
+
+			.popover .arrow:after {
+				content: " ";
+				bottom: 1px;
+				margin-left: -10px;
+				border-color: transparent;
+				border-style: solid;
+				border-width: 10px;
+				border-bottom-width: 0;
+				border-top-color: #ffe;
+				position: absolute;
+				display: block;
+				width: 0;
+				height: 0;
+				
+			}
+
+			.tip {
+				text-decoration: underline;
+				font-weight: bold;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Vanilla tooltip</h1>
+
+		<div>
+			Sometimes you want to show a 
+			<span class="tip" onclick="return vanillaTip.click(this);">tooltip</span>
+			<div class="popover top">
+				<div class="arrow"></div>
+				<div class="popover-content">
+					This is the content of the tooltip. Writing content is hard. 
+					But content is king!
+				</div>
+			</div>
+		</div>
+
+		<script src="tip.js"></script>
+		<script>
+			(function() {
+				window.vanillaTip.init();
+			})();
+		</script>
+	</body>
+</html>
