@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Vanilla Tooltip</title>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+	</head>
+	<body>
+		<section class="container">
+
+			<h1>Vanilla tooltip</h1>
+
+			<h2>With bootstrap</h2>
+
+			<p>This is an example using the bootstrap css. Since we use the bootstrap classnames, everything should just work.</p>
+
+			<div>
+				Sometimes you want to show a 
+				<span class="label label-info tip" onclick="return vanillaTip.click(this);">tooltip</span>.
+				<div class="popover top">
+					<div class="arrow"></div>
+					<div class="popover-content">
+						This is the content of the tooltip. Writing content is hard. 
+						But content is king!
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<script src="tip.js"></script>
+		<script>
+			(function() {
+				window.vanillaTip.init();
+			})();
+		</script>
+	</body>
+</html>
