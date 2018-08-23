@@ -16,19 +16,33 @@
 
 		function hidePopovers() {
 			const popovers = document.querySelectorAll('.popover-clone');
-			for (var i = 0; i < popovers.length; i++) {
+			for (let i = 0; i < popovers.length; i++) {
 				document.body.removeChild(popovers[i]);
+			}
+			const links = document.querySelectorAll('.tip');
+			for (let i = 0; i< links.length; i++) {
+				links[i].dataOpenPopover = null;
 			}
 		}
 
-		function showTooltip(target) {
-			const originalPopover = target.nextElementSibling || nextElementSibling(target);
+		function toggleTooltip(target) {
+			//Remove open popover if exists
+			if (target.dataOpenPopover) {
+				document.body.removeChild(target.dataOpenPopover);
+				target.dataOpenPopover = null;
+				return false;
+			}
+
+			//Or create and show popover
+			const originalPopover = target.nextElementSibling;
+			if (!originalPopover)
+				return false;
+
 			const popover = originalPopover.cloneNode(true);
-
-			document.body.appendChild(popover);
 			popover.classList.add('popover-clone');
-
+			document.body.appendChild(popover);
 			setPosition(popover, target);
+			target.dataOpenPopover = popover;
 
 			return false;
 		}
@@ -59,13 +73,6 @@
 			}
 		}
 
-		function nextElementSibling(el) {
-			do {
-				el = el.nextSibling;
-			} while (el && el.nodeType !== 1);
-			return el;
-		}
-
 		function init() {
 			document.body.addEventListener('click', function (e) {
 				const target = e.target || e.srcElement;
@@ -80,7 +87,7 @@
 		
 
 		return {
-			click: showTooltip,
+			click: toggleTooltip,
 			init: init
 		};
 	};
